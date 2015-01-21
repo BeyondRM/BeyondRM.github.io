@@ -3,26 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>BeyondRM on the Web</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 8]><link rel="stylesheet" href="stylesheets/ie.css"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <title>BeyondRM on the Web</title>
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/BeyondRM">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
+    <div id="header">
+      <nav>
+        <li class="fork"><a href="https://github.com/BeyondRM">View On GitHub</a></li>
+      </nav>
+    </div><!-- end header -->
 
     <div class="wrapper">
 
@@ -35,71 +30,122 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>
-<a id="welcome-to-the-beyondrm-pages" class="anchor" href="#welcome-to-the-beyondrm-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to the BeyondRM Pages.</h1>
+        <a id="welcome-to-the-beyondrm-pages" class="anchor" href="#welcome-to-the-beyondrm-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h1>Welcome to the BeyondRM Pages.</h1>
+        This is the webpage to find information about BeyondRM, the "Beyond RPG Maker" software.
+        <p></p>
 
-<p>This is the webpage to find information about BeyondRM, the "Beyond RPG Maker" software.</p>
+        <a id="the-initial-idea" class="anchor" href="#the-initial-idea" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>The Initial Idea.</h2>
+        The idea began with my usage of Enterbrain's RPG Maker software, of the VX and VX Ace varieties. While these
+        programs are incredibly powerful enough to allow a person to create a game, they have some needs associated
+        with their usage -- mainly to produce a game that is not the same as any other game.
+        <p></p>
+        Any rpg-maker (generified) <strong>must</strong> be, to some extent, <em>extensible</em>, to truly be more than
+        static content creation. Now, these game-maker programs <strong>do</strong> have scripting support included, as
+        the platform is inherently based upon <code>Ruby</code> scripts; and if the game creator wishes to add more
+        features, then most likely, "there's a script for that" (or one can be created).
+        <p></p>
+        So, browsing around on the RPG Maker English forums, I did see a thread or two about desired and suggested
+        features for the "next RPG Maker". To date, we have no indication of these suggestions having even been vetted
+        or viewed by the main RPG Maker developers; but many of the ideas are good ideas for implementation.
+        <p></p>
+        So, being the keen Java developer, I began considering the requirements of creating my own open-sourced clone
+        of the editor &mddash; so that games could be created with a more modernized program.
+        <p></p>
 
-<h2>
-<a id="the-initial-idea" class="anchor" href="#the-initial-idea" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Initial Idea.</h2>
+        <a id="the-beyondrm-project" class="anchor" href="#the-beyondrm-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h1>The BeyondRM Project.</h1>
+        BeyondRM has been in development for a short while, just on my local drive since earlier in 2014; it is
+        programmed almost entirely in Java, and will utilize a library for script handling of Lua code. The entirety of
+        it is broken into three primary component parts: the platform, the game engine, and the editor. Each of these
+        exist in their own repository, and each of them can be broken down to separate projects, for specific
+        dependency-management.
+        <p></p>
 
-<p>The idea began with my usage of Enterbrain's RPG Maker software, of the VX and VX Ace varieties. While these programs are incredibly powerful enough to allow a person to create a game, they have some needs associated with their usage -- mainly to produce a game that is not the same as any other game.</p>
+        <a id="the-platform" class="anchor" href="#the-platform" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>The Platform.</h2>
+        Our platform handles aspects of the target game, such as the things from the Database tabs in "the other rpg
+        maker". It has project modules for loading and handling of the images, audio, and various content which makes
+        the game function. Useful for attributes, classes, conditions, character definitions, map definition, event
+        data, anything which the editor would be used to create the game content. Even the meta-definition of a battle
+        system and a crafting system begins here; the specifics of those are in the Engine modules. For future
+        reference, I also intend to allow implementing one's own RPG system with different character stats, if those
+        from the baseline RPG Maker project are not relevant to a game-maker's game content....
+        <p></p>
+        Platform module projects are for the storage-backed game assets that are implemented in the game environment;
+        this platform data is used by the Engine module projects to actually play the game, and by the Editor module
+        projects to create and edit such content.
+        <p></p>
 
-<p>Any rpg-maker (generified) <strong>must</strong> be, to some extent, <em>extensible</em>, to truly be more than static content creation. Now, these game-maker programs <strong>do</strong> have scripting support included, as the platform is inherently based upon <code>Ruby</code> scripts; and if the game creator wishes to add more features, then most likely, "there's a script for that" (or one can be created).</p>
+        <a id="the-engine" class="anchor" href="#the-engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>The Engine.</h2>
+        The engine, it should be no surprise, is the literal "game loop" in which a game operates, like the engine in
+        an automobile. The main game loop is being designed with multi-threading in mind, to spread the computation of
+        game functionality across multiple cores, where necessary. Full-screen access is intended to be native.
+        <p></p>
+        Our engine is also "state-based", meaning that its broad functionality can be logically separated into various
+        "states" of operation, with a common ancestor class to unify how they are defined. The game title screen is one
+        state; game loading or saving screens are also each a unique state; cutscenes are a special kind of state, can
+        be canceled but otherwise not interacted with; an in-game menu is yet another state; and finally the actual
+        game-play is in another state. Each state allows defining relevant methodology for its initialization, drawing,
+        and updating of what happens per game tick, as well as what happens when switching to or from a different state.
+        <p></p>
 
-<p>So, browsing around on the RPG Maker English forums, I did see a thread or two about desired and suggested features for the "next RPG Maker". To date, we have no indication of these suggestions having even been vetted or viewed by the main RPG Maker developers; but many of the ideas are good ideas for implementation.</p>
+        <a id="the-editor" class="anchor" href="#the-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>The Editor.</h2>
+        The editor is perhaps the gaming aspect where most game-makers will be spending their time; and to that end, it
+        is being created with JavaFX (from Java 8.0) visual components, a lightweight declarative component layout,
+        styled with visually-pleasing CSS attributes as much as possible. Don't like the way it appears? Copy the
+        cascading style sheet to duplicate file, edit the FXML CSS to your liking, apply it to the editor interface,
+        and optionally share it, for others as well.
+        <p></p>
+        At first glance, the editor is being designed to be a fully tabular interface, meaning that most content can be
+        accessed from within a tab pane in the editor, and not depending upon opening a new window &hellip; in most
+        cases, this may speed up game development somewhat. Tabs are arranged according to the sub-tabs containing
+        editing features, and navigation between them is intended to be smooth.
+        <p></p>
 
-<p>So, being the keen Java developer, I began considering the requirements of creating my own open-sourced clone of the editor -- so that games could be created with a more modernized program.</p>
+        <a id="editor-tabbed-interface" class="anchor" href="#editor-tabbed-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h3>Editor tabbed interface.</h3>
+        One main tab will function as an "editor control center", featuring sub-tabs for information and configuration
+        statistics, as well as metadata for an opened project.
+        <p></p>
+        Second and third are two tabs for editing the parts of the "database", separated for content that is either:
+        <ol>
+          <li/>(A) unchanging through a game, or
+          <li/>(B) changing by its nature when a game is played.
+        </ol>
+        The former contains sub-tabs for defining animation, attributes, classes, conditions, items, et cetera, things
+        that do not change and do not need to be saved in a running game. The latter is for such things as characters
+        and variables which change throughout a game, and should be saved when the player saves the game.
+        <p></p>
+        A fourth tab is for anything mapping-related: managing the tilesets used across the Editor, managing the maps
+        lists and editing of events, et cetera. It may also be useful for managing battle system terrain, specifying
+        the battle background and placement of the combatants, and more.
+        <p></p>
+        Another main tab is for specifying features of the game system, the localizable strings (a planned feature),
+        core features and initial state of a game window, basically properties to control the broader workings of the
+        game engine, thing that are not part of the game database.
+        <p></p>
+        A final tab may be for the various meta-project tools, such as handling graphical media (setting up animations
+        or tweaking sprites), character sprite generation, et cetera.
+        <p></p>
 
-<h1>
-<a id="the-beyondrm-project" class="anchor" href="#the-beyondrm-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>The BeyondRM Project.</h1>
-
-<p>BeyondRM has been in development for a short while, just on my local drive since earlier in 2014; it is programmed almost entirely in Java, and will utilize a library for script handling of Lua code. The entirety of it is broken into three primary component parts: the platform, the game engine, and the editor. Each of these exist in their own repository, and each of them can be broken down to separate projects, for specific dependency-management.</p>
-
-<h2>
-<a id="the-platform" class="anchor" href="#the-platform" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Platform.</h2>
-
-<p>Our platform handles aspects of the target game, such as the things from the Database tabs in "the other rpg maker". It has project modules for loading and handling of the images, audio, and various content which makes the game function. Useful for attributes, classes, conditions, character definitions, map definition, event data, anything which the editor would be used to create the game content. Even the meta-definition of a battle system and a crafting system begins here; the specifics of those are in the Engine modules. For future reference, I also intend to allow implementing one's own RPG system with different character stats, if those from the baseline RPG Maker project are not relevant to a game-maker's game content....</p>
-
-<p>Platform module projects are for the storage-backed game assets that are implemented in the game environment; this platform data is used by the Engine module projects to actually play the game, and by the Editor module projects to create and edit such content.</p>
-
-<h2>
-<a id="the-engine" class="anchor" href="#the-engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Engine.</h2>
-
-<p>The engine, it should be no surprise, is the literal "game loop" in which a game operates, like the engine in an automobile. The main game loop is being designed with multi-threading in mind, to spread the computation of game functionality across multiple cores, where necessary. Full-screen access is intended to be native.</p>
-
-<p>Our engine is also "state-based", meaning that its broad functionality can be logically separated into various "states" of operation, with a common ancestor class to unify how they are defined. The game title screen is one state; game loading or saving screens are also each a unique state; cutscenes are a special kind of state, can be canceled but otherwise not interacted with; an in-game menu is yet another state; and finally the actual game-play is in another state. Each state allows defining relevant methodology for its initialization, drawing, and updating of what happens per game tick, as well as what happens when switching to or from a different state.</p>
-
-<h2>
-<a id="the-editor" class="anchor" href="#the-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Editor.</h2>
-
-<p>The editor is perhaps the gaming aspect where most game-makers will be spending their time; and to that end, it is being created with JavaFX (from Java 8.0) visual components, a lightweight declarative component layout, styled with visually-pleasing CSS attributes as much as possible. Don't like the way it appears? Copy the cascading style sheet to duplicate file, edit the FXML CSS to your liking, apply it to the editor interface, and optionally share it, for others as well.</p>
-
-<p>At first glance, the editor is being designed to be a fully tabular interface, meaning that most content can be accessed from within a tab pane in the editor, and not depending upon opening a new window -- in most cases, this may speed up game development somewhat. Tabs are arranged according to the sub-tabs containing editing features, and navigation between them is intended to be smooth.</p>
-
-<h3>
-<a id="editor-tabbed-interface" class="anchor" href="#editor-tabbed-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Editor tabbed interface.</h3>
-
-<p>One main tab will function as an "editor control center", featuring sub-tabs for information and configuration statistics, as well as metadata for an opened project.</p>
-
-<p>Second and third are two tabs for editing the parts of the "database", separated for content that is either A: unchanging through a game, or B: changing by its nature when a game is played. The former contains sub-tabs for defining animation, attributes, classes, conditions, items, et cetera, the things that do not change and do not need to be saved in a running game; the latter is for such things as characters and variables which change throughout a game, and should be saved when the player saves the game.</p>
-
-<p>A fourth tab is for anything related to mapping: managing the tilesets used across the Editor, managing the maps lists and editing of events, et cetera. It may also be useful for managing the battle system terrain, specifying the battle background and placement of the combatants, and more.</p>
-
-<p>Another main tab is for specifying features of the game system, the localizable strings (a planned feature), core features and initial state of a game window, basically properties to control the broader workings of the game engine, thing that are not part of the game database.</p>
-
-<p>A final tab may be for the various meta-project tools, such as handling graphical media (setting up animations or tweaking sprites), character sprite generation, et cetera.</p>
-
-<h3>
-<a id="editor-work-with-engine-and-platform" class="anchor" href="#editor-work-with-engine-and-platform" aria-hidden="true"><span class="octicon octicon-link"></span></a>Editor, Work With Engine and Platform.</h3>
-
-<p>While the Platform is mentioned to be the storage-backed point of commonality between what occurs in the Editor and Engine, the Editor components should allow game development in a way the current RPG Maker editors do not: cooperative or "team-based" game making. Meaning that for a small team of two or three people who share a single objective for a game, each can each focus on the aspects of an RPG that they like. (The specifics of how to perform this are currently under consideration, but may depend upon a version-control methodology.)</p>
-
-<p>Editor functionality depends upon both the Platform and Engine modules, and adding functionality is possible, although corresponding functionality should be added to the Platform first, then to the Engine, and finally to the Editor.</p>
+        <a id="editor-work-with-engine-and-platform" class="anchor" href="#editor-work-with-engine-and-platform" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h3>Editor, Work With Engine and Platform.</h3>
+        While the Platform is mentioned to be the storage-backed point of commonality between what occurs in the Editor
+        and Engine, the Editor components should allow game development in a way the current RPG Maker editors do not:
+        cooperative or "team-based" game making. Meaning that for a small team of two or three people who share a
+        single objective for a game, each can each focus on the aspects of an RPG that they like. (The specifics of how
+        to perform this are currently under consideration, but may depend upon a version-control methodology.)
+        <p></p>
+        Editor functionality depends upon both the Platform and Engine modules, and adding functionality is possible,
+        although corresponding functionality should be added to the Platform first, then to the Engine, and finally to
+        the Editor.
+        <p></p>
       </section>
-
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
   </body>
 </html>
