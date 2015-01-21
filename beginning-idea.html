@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--[if lt IE 8]><link rel="stylesheet" href="stylesheets/ie.css"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>BeyondRM :: Beginning and Ideas</title>
+  </head>
+  <body>
+    <!-- begin header -->
+    <div id="header">
+      <nav>
+        <li class="fork"><a href="https://github.com/BeyondRM">View On GitHub</a></li>
+      </nav>
+    </div>
+    <!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>In The Beginning; Idea Behind BeyondRM.</h1>
+          <p>This is how the BeyondRM idea came to be, and where it is going.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/BeyondRM">BeyondRM</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <a id="before" class="anchor" href="#before" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>Beginning Ideas.</h2>
+        If you have played any number of freely-available role-playing and simulation games, you might come across some
+        mentions of the <strong>RPG Maker</strong> game editor and engine, for making and playing fairly decent classic
+        RPG-style games, similar in nature to many of the classic console games. And I am no exception to this; several
+        of the games are quite easily obtainable, as the RPG-Maker forums are active, with participants ranging to both
+        genders and across many ages.
+        <p></p>
+        For myself, the attempt to "create my own game" is a persistent draw; but, I also wanted to be informed of some
+        of the "limitations" and drawbacks of such a game-making piece of software. And so, the search began; and found
+        the "Suggestions for the next 'RPG Maker'" thread in the forum. This topic includes literally <em>hundreds</em>
+        of requests, for enhancements or fixes. Some of the suggestions might not have been possible without a complete
+        revamp of the editor and game components, but many if not most requests are for better editing features, better
+        and larger game screens, and so on.
+        <p></p>
+        Further; having been programming in Java for some time, I took the thought of creating my own RPG Maker, using
+        the Java skills I have been developing, and considering many of the relevant suggestions from the above list. I
+        have been considering many of the feature suggestions, and quite a few are actually possible to develop in Java
+        (with a little inspiration and ingenuity), using some class libraries for back-end functionality and to further
+        development.
+        <p></p>
+        Generally, game creation in BeyondRM will follow a similar work-flow as it is for using RPG Maker, though quite
+        a few differences might be present, for the better. Editing game content is in a tabbed interface that can keep
+        nearly all the editor interface within a few navigation clicks &hellip; reducing the necessity to open a dialog
+        window. Improvement to the game screens may be implemented, to see a more natural "full-screen" view of what is
+        being played. The overall "open-source" nature of this project's parts will mean that the target engine or data
+        will be quite a bit more extensible, for those who want to fully customize their game.
+
+        <a id="during" class="anchor" href="#during" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>During Development.</h2>
+        While the original "RPG Maker" is made in a C/C++ language with scripting of a platform in Ruby, we are taking
+        the stance that an "RPG Maker" can be almost entirely made in Java, with similar scripting capabilities, where
+        necessary.
+        <p></p>
+        Development of BeyondRM is primarily in Java (using Java version 1.8.0_25), using modern practices. Aspects of
+        the editor are being implemented with JavaFX-based FXML infrastructure, a lightweight application GUI component
+        framework that is easily styled with CSS for beautiful appearance.
+        <p></p>
+        Since this is a different program from Enterbrain's program, scripting will not be the same. Any number of Java
+        class-libraries exist to allow scripting languages to be used with Java programs; I have selected a formidable
+        [lua](http://lua.org/ Lua, a modern scripting language) variation.
+        <p></p>
+        This meta-project is essentially a collection of sub-projects, with individual dependencies upon each other, as
+        necessary. These projects belong to either the Editor (for the editing of game content), Engine (for playing of
+        game content), or Platform (for management of game content) infrastructure.
+        <ul>
+          <li>Starting from the very bottom, the Platform modules provide the definitions of the data types used within
+            both the Editor and Engine modules; some parts of it is merely the "data loaders" for the baseline contents
+            created in the Editor modules, and other parts function as baseline game-management features. This is for
+            handling primary data that does not change in a game, such as the character classes and conditions, various
+            forms of metadata used in other modules as dependencies, et cetera.</li>
+          <li>The Engine modules handle initializing the game states and such; it initializes the Platform modules with
+            actual content data files. The engine components are being developed upon a state-based ideology; to say it
+            simply, various aspects of a game are defined as a "state" in the lifetime of a game.</li>
+          <li>The Editor modules bring all the other parts together, by allowing seamless editing and test-playing of
+            games, where possible. One intention is to simplify editing features, and another is to make possible fully
+            cooperative, "team-based" development of games.</li>
+        </ul>
+
+        <a id="finish" class="anchor" href="#finish" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        <h2>Finishing Thoughts.</h2>
+        It is a long and interesting journey in developing a meta-project, to allow the creation of Java role-playing
+        games. The intent is to always keep this free, and to keep to a regular development and release cycle. I should
+        note that many of the comments regarding development of this Editor-Engine-Platform meta-project actually state
+        an inclusive "we" instead of just "I". Even if it is just myself as the developer, I would like this to become
+        a feature-rich editor, capable of making appealing games, and as extendable as possible, for those people who
+        desire this. I will be generally open to most ideas for its implementation.
+      </section>
+    </div>
+  </body>
+</html>
